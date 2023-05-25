@@ -20,12 +20,12 @@ a,
   display: flex;
   justify-content: space-around;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 4rem;
   color: #a175a5;
   transition: 0.4s;
   margin: 1rem;
-  width: 20vw;
-  border-radius: 30px;
+  width: 40vw;
+  border-radius: 50px;
 }
 
 @media (hover: hover) {

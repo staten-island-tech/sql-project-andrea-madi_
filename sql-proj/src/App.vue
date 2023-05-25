@@ -9,10 +9,11 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/leaderboard">Leaderboard</RouterLink>
+        <RouterLink to="/">PLAY</RouterLink>
+        <RouterLink to="/about">SIGN IN</RouterLink>
+        <RouterLink to="/leaderboard">LEADERBOARD</RouterLink>
       </nav>
+      <img class='img' src="https://images.squarespace-cdn.com/content/v1/5b60ce200dbda3b4ad443fad/7d34a71a-42cc-49df-9684-8a3200088289/Untitled+design+%284%29.png" alt="">
     </div>
   </header>
 
@@ -39,5 +40,14 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img{
+  align-items: center;
+  height: 50rem;
 }
 </style>
