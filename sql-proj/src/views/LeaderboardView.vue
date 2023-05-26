@@ -6,3 +6,9 @@ import TheWelcome from '../components/TheWelcome.vue'
   <main>
   </main>
 </template>
+
+<style scoped>
+body{
+  background-color: green;
+}
+</style>
