@@ -1,18 +1,20 @@
 <script setup>
 import { ref } from 'vue'
 const msg = ref(' ' + 'player')
-const msg2 = ref('')
-function storeJs() {}
+const password = ref('')
 </script>
 
 <template>
+  <div class="welcome">
+
+  </div>
   <h1>{{ 'welcome' + ' ' + msg }}</h1>
   input username:
   <input v-model="msg" />
-  <button onclick="storeJs()">enter</button>
+  <button >enter</button>
   password:
-  <input v-model="msg2" />
-  <button onclick="storeJs()">enter</button>
+  <input v-model="password" />
+  <button>enter</button>
 </template>
 
 <style scoped>
