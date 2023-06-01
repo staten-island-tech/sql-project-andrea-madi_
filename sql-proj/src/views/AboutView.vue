@@ -12,13 +12,15 @@ function storeJs(msg, msg2) {
 </script>
 
 <template>
-  <h1>{{ 'welcome' + ' ' + msg }}</h1>
-  input username:
-  <input v-model="msg" />
-  <button onclick="storeJs()">enter</button>
-  password:
-  <input v-model="msg2" />
-  <button onclick="storeJs()">enter</button>
+  <div class="welcome">
+    <h1>{{ 'welcome' + ' ' + msg }}</h1>
+    input username:
+    <input v-model="msg" />
+    <button>enter</button>
+    password:
+    <input v-model="password" />
+    <button>enter</button>
+  </div>
 </template>
 
 <style scoped>
