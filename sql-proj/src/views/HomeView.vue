@@ -4,18 +4,38 @@
   </div>
 </template>
 
-<script setup>
-// import TheWelcome from '../components/TheWelcome.vue';
-import Card from '../components/Card.Vue';
-
+<script>
+import Card from '../components/Card.Vue'
 export default {
-  name: "Home",
-};
+  components: {
+    CoolCard,
+    CoolButton
+  },
+  data() {
+    return {
+      student: 'Daria',
+      animals: [
+        { title: 'cat', desc: 'sneaky animal who poops in my house' },
+        { title: 'Boggy-Woggy', desc: 'Stands too close to his teachers' }
+      ],
+      selected: '',
+      graduated: false
+      // text: "",
+    }
+  },
+  methods: {
+    test: function () {
+      console.log('This is a test')
+    }
+  }
+}
 
-  data() ;
+/* export default {
+  name: "Home",
+  data() {
     return{
-       selected: "",
- decks: [
+       selected: "" */
+/* decks: [
   {
     type: 'aurora',
     url: 'https://www.pngmart.com/files/6/Princess-Aurora-PNG-Picture.png'
@@ -40,5 +60,8 @@ export default {
     type: 'tiana',
     url: 'https://i.pinimg.com/originals/a0/44/51/a04451d5e5befbedf0bfeba4e0b9d2f2.png'
   },
-  ],
+  ], */
+/* },
+  },
+} */
 </script>
