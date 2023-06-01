@@ -1,5 +1,12 @@
 @import './base.css';
 
+body,
+*,
+html {
+  background-color: #2d1b4b;
+  font-family: 'VT323', monospace;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -7,29 +14,36 @@
   font-weight: normal;
 }
 
-body,
-*,
-html {
-  background-color: #2d1b4b;
-  font-family: 'VT323', monospace;
-  ;
-}
-
 a,
 .green {
   display: flex;
   justify-content: space-around;
   text-decoration: none;
-  font-size: 4rem;
+  text-align: center;
+  font-size: 2rem;
   color: #a175a5;
   transition: 0.4s;
   margin: 1rem;
   width: 40vw;
   border-radius: 50px;
+  background-color:#181836f5 ;
 }
 
 @media (hover: hover) {
   a:hover {
     background-color: #6969b35d;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
   }
 }
