@@ -6,15 +6,15 @@ const password = ref('')
 
 <template>
   <div class="welcome">
-
+    <h1>{{ 'welcome' + ' ' + msg }}</h1>
+    input username:
+    <input v-model="msg" />
+    <button >enter</button>
+    password:
+    <input v-model="password" />
+    <button>enter</button>
   </div>
-  <h1>{{ 'welcome' + ' ' + msg }}</h1>
-  input username:
-  <input v-model="msg" />
-  <button >enter</button>
-  password:
-  <input v-model="password" />
-  <button>enter</button>
+  
 </template>
 
 <style scoped>
