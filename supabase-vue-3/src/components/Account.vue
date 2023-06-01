@@ -1,8 +1,9 @@
 <script setup>
 import { supabase } from '../supabase'
 import { onMounted, ref, toRefs } from 'vue'
-import { useLoginStore } from '../stores/login'
-const login = useLoginStore()
+import Avatar from './Avatar.vue'
+import { useCounterStore } from '../stores/counter';
+const counter = useCounterStore()
 
 const props = defineProps(['session'])
 const { session } = toRefs(props)
@@ -12,7 +13,8 @@ const username = ref('')
 const website = ref('')
 const avatar_url = ref('')
 
-
+counter.name = username
+counter.avatar = avatar_url
 
 onMounted(() => {
   getProfile()
@@ -82,6 +84,7 @@ async function signOut() {
 
 <template>
   <form class="form-widget" @submit.prevent="updateProfile">
+    <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
     <div>
       <label for="email">Email</label>
       <input id="email" type="text" :value="session.user.email" disabled />

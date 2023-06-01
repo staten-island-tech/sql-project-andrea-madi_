@@ -23,3 +23,14 @@ onMounted(() => {
     <Auth v-else />
   </div>
 </template>
+
+<style>
+.container{
+  display: flex;
+  position: absolute;
+  margin-top: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+</style>

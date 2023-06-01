@@ -8,10 +8,17 @@ html {
 }
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+}
+
+nav{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin-left: 0;
+  margin-top: 0;
 }
 
 a,
@@ -20,30 +27,17 @@ a,
   justify-content: space-around;
   text-decoration: none;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1rem;
   color: #a175a5;
   transition: 0.4s;
-  margin: 1rem;
-  width: 40vw;
-  border-radius: 50px;
+  padding: 15px;
+  border-radius: 30px;
   background-color:#181836f5 ;
+  margin: 1rem;
 }
 
 @media (hover: hover) {
   a:hover {
     background-color: #6969b35d;
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 }
