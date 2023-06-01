@@ -11,3 +11,7 @@ export const useCounterStore = defineStore('counter', () => {
   return { count, doubleCount, increment }
 })
  */
+import { reactive } from 'vue'
+export const store = reactive({
+  data: []
+})

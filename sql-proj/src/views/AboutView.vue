@@ -1,8 +1,14 @@
 <script setup>
 import { ref } from 'vue'
+import store from '../stores/store.js'
 const msg = ref(' ' + 'player')
 const msg2 = ref('')
-function storeJs() {}
+function storeJs(msg, msg2) {
+  store.data = []
+  const arr = []
+  arr.push(msg, msg2)
+  store.data.push(arr)
+}
 </script>
 
 <template>
