@@ -1,5 +1,5 @@
 <template>
-  <div class="flip-card" v-on:click="handleClick" :active="true">
+  <div class="flip-card" v-on:click="handleClick(flip-card)">
     <div class="flip-card-inner">
     <div class="flip-card-front">
         <img class='logo' src="https://hipfonts.com/wp-content/uploads/2022/08/Walt_Disney_logo_cover.png" alt="disney theme logo">
@@ -19,8 +19,8 @@ export default {
     deck: Object
   },
   methods:{
-    handleClick() {
-      flip-card.classList.toggle('is-flipped');
+    handleClick(el) {
+      el.classList.toggle('flip-card-active');
     }
   }
 }
@@ -61,8 +61,8 @@ export default {
   transform-style: preserve-3d;
 }
 
-.flip-card.is-flipped .flip-card-inner {
-  transform: translateX(-100%) rotateY(-180deg);
+.flip-card-active .flip-card-inner {
+  transform: rotateY(-180deg);
 }
 
 .flip-card-front,
