@@ -75,6 +75,13 @@ export default {
 </template>
 
 <style scoped>
+.home{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 img {
   width: 100%;
   height: 100%;
