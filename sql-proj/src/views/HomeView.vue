@@ -10,7 +10,7 @@ export default {
   },
   data() {
     return {
-      selected: '',
+      selected: undefined,
       decks: [
         {
           type: 'aurora',
@@ -62,19 +62,68 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    show(deck) {
+      if (deck.matched) {
+        return
+      }
+      if (!this.selected) {
+        this.selected = deck
+        deck.flipped = true
+        return
+      }
+      deck.flipped = true
+      if (deck.type == this.selected.type) {
+        deck.matched = true
+        this.selected.matched = true
+        this.selected = undefined
+        return
+      }
+      // if (this.card.type == this.correct) {
+      //   return
+      // }
+      setTimeout(() => {
+        deck.flipped = false
+        this.selected.flipped = false
+        this.selected = undefined
+      }, 500)
+    }
   }
 }
+/* created()
+{
+  this.decks.forEach((deck) => {
+    Vue.set(deck, 'isFlipped', false)
+  })
+  memoryCards: [],
+    (this.memoryCards = _.shuffle(
+      this.memoryCards.concat(_.cloneDeep(this.decks), _.cloneDeep(this.decks))
+    ))
+} */
 </script>
 
 <template>
   <nav>
     <div class="home">
-      <card v-for="deck in decks" :key="deck" :url="deck.url" />
+      <card
+        v-for="deck in decks"
+        :card="deck"
+        :url="deck.url"
+        :flipped="deck.flipped"
+        @click="show(deck)"
+      />
     </div>
   </nav>
 </template>
 
 <style scoped>
+.home {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 0 1rem;
+}
 img {
   width: 100%;
   height: 100%;
