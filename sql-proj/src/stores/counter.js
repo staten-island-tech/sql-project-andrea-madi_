@@ -13,6 +13,7 @@
 // })
 
 import { reactive } from 'vue'
-export const store = reactive({
+const store = reactive({
   data: []
 })
+export default store

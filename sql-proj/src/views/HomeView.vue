@@ -1,9 +1,11 @@
 <script>
 import card from '../components/card.vue'
+import store from '../stores/counter'
 export default {
   name: 'Home',
   props: {
     url: String
+    // turns: Number
   },
   components: {
     card
@@ -11,6 +13,7 @@ export default {
   data() {
     return {
       selected: undefined,
+      turns: 0,
       decks: [
         {
           type: 'aurora',
@@ -88,6 +91,18 @@ export default {
         this.selected.flipped = false
         this.selected = undefined
       }, 500)
+      this.turns++
+      // alert(this.turns)
+    },
+    randomize() {
+      store.data.push(this.turns)
+      this.turns = 0
+      console.log('data.store count', store.data)
+      this.decks.sort(() => Math.random() - 0.5)
+      for (let i = 0; i < this.decks.length; i++) {
+        this.decks[i].flipped = false
+        this.decks[i].matched = false
+      }
     }
   }
 }
@@ -114,6 +129,8 @@ export default {
         @click="show(deck)"
       />
     </div>
+    <button @click="randomize()" class="btn">replay!</button>
+    <h2 class="turns">Turns: {{ turns }}</h2>
   </nav>
 </template>
 
@@ -127,6 +144,16 @@ export default {
 img {
   width: 100%;
   height: 100%;
+}
+.turns {
+  color: cornflowerblue;
+}
+.btn {
+  color: aliceblue;
+  background-color: darkslateblue;
+  height: 50px;
+  width: 100px;
+  font-size: 30px;
 }
 nav {
   width: 100%;
