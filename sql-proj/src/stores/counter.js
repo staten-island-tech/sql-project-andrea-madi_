@@ -12,8 +12,20 @@
 //   return { count, doubleCount, increment }
 // })
 
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 const store = reactive({
-  data: []
+  userData: ref([]),
+  allData: ref([]),
+  allBest: ref([])
 })
 export default store
+
+// import { defineStore } from 'pinia'
+// import { ref } from 'vue'
+
+// export const useCounterStore = defineStore('counter', {
+//   state: () => ({ 
+//     data: ref([]),
+//     scores: ref([])
+//   }),
+// })

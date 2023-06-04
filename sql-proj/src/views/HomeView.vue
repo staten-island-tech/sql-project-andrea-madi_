@@ -95,9 +95,9 @@ export default {
       // alert(this.turns)
     },
     randomize() {
-      store.data.push(this.turns)
+      store.userData.push(this.turns)
       this.turns = 0
-      console.log('data.store count', store.data)
+      console.log('data.store count', store.userData)
       this.decks.sort(() => Math.random() - 0.5)
       for (let i = 0; i < this.decks.length; i++) {
         this.decks[i].flipped = false
@@ -116,6 +116,7 @@ export default {
       this.memoryCards.concat(_.cloneDeep(this.decks), _.cloneDeep(this.decks))
     ))
 } */
+
 </script>
 
 <template>
