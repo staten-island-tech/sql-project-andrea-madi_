@@ -11,7 +11,7 @@
         @click="show(deck)"
       />
     </div>
-    <button @click="randomize()" class="btn">replay!</button>
+    <button @click="randomize()" class="btn">sumbit score + replay!</button>
     <h2 class="turns">Turns: {{ turns }}</h2>
   </div>
 </template>
