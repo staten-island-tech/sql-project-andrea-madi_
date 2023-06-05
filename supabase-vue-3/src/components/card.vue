@@ -64,4 +64,9 @@ img {
   min-height: 120px;
   cursor: pointer;
 }
+
+.turns {
+  color: cornflowerblue;
+}
+
 </style>

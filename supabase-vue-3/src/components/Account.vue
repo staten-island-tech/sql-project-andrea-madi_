@@ -10,14 +10,16 @@ const { session } = toRefs(props)
 
 const loading = ref(true)
 const username = ref('')
-const website = ref('')
+const high_score = ref(100)
 const avatar_url = ref('')
 
 counter.name = username
 counter.avatar = avatar_url
+// counter.userBest = high_score
 
 onMounted(() => {
   getProfile()
+  
 })
 
 async function getProfile() {
@@ -27,7 +29,7 @@ async function getProfile() {
 
     let { data, error, status } = await supabase
       .from('profiles')
-      .select(`username, website, avatar_url`)
+      .select(`username, avatar_url, high_score`)
       .eq('id', user.id)
       .single()
 
@@ -35,7 +37,7 @@ async function getProfile() {
 
     if (data) {
       username.value = data.username
-      website.value = data.website
+      high_score.value = data.high_score
       avatar_url.value = data.avatar_url
     }
   } catch (error) {
@@ -53,7 +55,7 @@ async function updateProfile() {
     const updates = {
       id: user.id,
       username: username.value,
-      website: website.value,
+      high_score: high_score.value,
       avatar_url: avatar_url.value,
       updated_at: new Date(),
     }
@@ -94,8 +96,8 @@ async function signOut() {
       <input id="username" type="text" v-model="username" />
     </div>
     <div>
-      <label for="website">Website</label>
-      <input id="website" type="url" v-model="website" />
+      <label for="high_score">High Score</label>
+      <input id="high_score" type="number" :value="high_score" disabled/>
     </div>
 
     <div>
