@@ -13,9 +13,9 @@ const username = ref('')
 const high_score = ref(100)
 const avatar_url = ref('')
 
-counter.name = username
-counter.avatar = avatar_url
-// counter.userBest = high_score
+counter.name = username.value
+counter.avatar = avatar_url.value
+counter.userBest = high_score.value
 
 onMounted(() => {
   getProfile()
@@ -96,8 +96,7 @@ async function signOut() {
       <input id="username" type="text" v-model="username" />
     </div>
     <div>
-      <label for="high_score">High Score</label>
-      <input id="high_score" type="number" :value="high_score" disabled/>
+      <p> High Score: {{ high_score }}</p>
     </div>
 
     <div>

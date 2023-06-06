@@ -33,6 +33,9 @@
 import card from '../components/card.vue'
 import { useCounterStore } from '../stores/counter'
 const counter = useCounterStore()
+const props = defineProps(['session'])
+const { session } = toRefs(props)
+
 export default {
   name: 'Home',
   props: {
@@ -137,7 +140,28 @@ export default {
         this.decks[i].flipped = false
         this.decks[i].matched = false
       }
+      updateProfile(this.turns)
+    },
+    async updateProfile(highscore) {
+  try {
+    loading.value = true
+    const { user } = session.value
+
+    const updates = {
+      id: user.id,
+      high_score: highscore,
+      updated_at: new Date(),
     }
+
+    let { error } = await supabase.from('profiles').upsert(updates)
+
+    if (error) throw error
+  } catch (error) {
+    alert(error.message)
+  } finally {
+    loading.value = false
+  }
+}
   }
 }
 </script>

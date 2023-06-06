@@ -2,8 +2,10 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+
 export const useCounterStore = defineStore('counter', {
   state: () => ({ 
+    session: ref({}),
     userBest: ref(0),
     userData: ref([]),
     allData: ref([]),
