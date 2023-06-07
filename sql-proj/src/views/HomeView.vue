@@ -96,15 +96,13 @@ export default {
     },
     randomize() {
       store.userData.push(this.turns)
+      alert(this.turns)
       this.turns = 0
       console.log('data.store count', store.userData)
       this.decks.sort(() => Math.random() - 0.5)
       for (let i = 0; i < this.decks.length; i++) {
         this.decks[i].flipped = false
         this.decks[i].matched = false
-      }
-      if ((decks.matched = true)) {
-        alertWinner()
       }
     }
   }
