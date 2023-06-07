@@ -103,6 +103,9 @@ export default {
         this.decks[i].flipped = false
         this.decks[i].matched = false
       }
+      if ((decks.matched = true)) {
+        alertWinner()
+      }
     }
   }
 }
@@ -116,7 +119,6 @@ export default {
       this.memoryCards.concat(_.cloneDeep(this.decks), _.cloneDeep(this.decks))
     ))
 } */
-
 </script>
 
 <template>
