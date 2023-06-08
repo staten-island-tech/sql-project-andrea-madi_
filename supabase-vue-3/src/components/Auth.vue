@@ -4,12 +4,14 @@ import { supabase } from '../supabase'
 
 const loading = ref(false)
 const email = ref('')
+const password = ref('')
 
 const handleLogin = async () => {
   try {
     loading.value = true
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signUp({
       email: email.value,
+      password: password.value
     })
     if (error) throw error
     alert('Check your email for the login link!')
@@ -30,6 +32,9 @@ const handleLogin = async () => {
       <p class="description">Sign in via magic link with your email below</p>
       <div>
         <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
+      </div>
+      <div>
+        <input class='inputField' required type="text" placeholder="Password" v-model="password">
       </div>
       <div>
         <input

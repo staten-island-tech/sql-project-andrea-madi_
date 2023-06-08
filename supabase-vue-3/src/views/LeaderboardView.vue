@@ -1,26 +1,15 @@
 <script>
-import { useCounterStore } from '../stores/counter';
-const counter = useCounterStore()
+// import { useCounterStore } from '../stores/counter';
+// const counter = useCounterStore()
+// import Login from '../components/login.vue'
 export default{
-    name: 'leaderboard',
-    data: {
-        return: {
-            counter
-        }
-    }
+    name: "leaderboard",
+    
 }
 </script>
 
 <template>
-<header>
-    <h1>LEADERBOARD</h1>
-</header>
-<section>
-    <!-- <div class='user' v-for="user in users" :key="user.id">
-        <h3>counter.name</h3>
-        <img src="{{ counter.avatar }}" alt="">
-    </div> -->
-</section>
+
 </template>
 
 <!-- 
@@ -33,11 +22,5 @@ export default{
 -->
 
 <style>
-.user{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: cadetblue;
-}
+
 </style>

@@ -2,8 +2,8 @@
 import { supabase } from '../supabase'
 import { onMounted, ref, toRefs } from 'vue'
 import Avatar from './Avatar.vue'
-import { useCounterStore } from '../stores/counter';
-const counter = useCounterStore()
+// import { useCounterStore } from '../stores/counter';
+// const counter = useCounterStore()
 
 const props = defineProps(['session'])
 const { session } = toRefs(props)
@@ -12,10 +12,6 @@ const loading = ref(true)
 const username = ref('')
 const high_score = ref(100)
 const avatar_url = ref('')
-
-counter.name = username.value
-counter.avatar = avatar_url.value
-counter.userBest = high_score.value
 
 onMounted(() => {
   getProfile()
@@ -82,6 +78,13 @@ async function signOut() {
   }
 }
 
+async function deleteAcc(){
+  try {
+    loading.value = true
+  } catch (error) {
+    
+  }
+}
 </script>
 
 <template>
@@ -92,8 +95,9 @@ async function signOut() {
       <input id="email" type="text" :value="session.user.email" disabled />
     </div>
     <div>
-      <label for="username">Name</label>
-      <input id="username" type="text" v-model="username" />
+      <label for="password">password</label>
+      <input id="password" type="text" :value="session.user.password"/>
+      <p>Name: {{ session.user.password }}</p>
     </div>
     <div>
       <p> High Score: {{ high_score }}</p>

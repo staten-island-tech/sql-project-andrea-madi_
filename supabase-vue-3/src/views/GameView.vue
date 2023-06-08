@@ -33,11 +33,12 @@
 import card from '../components/card.vue'
 import { useCounterStore } from '../stores/counter'
 const counter = useCounterStore()
-const props = defineProps(['session'])
-const { session } = toRefs(props)
+
+// const props = defineProps(['session'])
+// const { session } = toRefs(props)
 
 export default {
-  name: 'Home',
+  name: 'game',
   props: {
     url: String
     // turns: Number
