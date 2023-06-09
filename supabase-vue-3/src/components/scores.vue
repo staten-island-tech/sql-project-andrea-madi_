@@ -1,5 +1,15 @@
+
+
+<template>
+<div class="container">
+    <div class="row-card">
+        <h2 id="name">{{ username }}</h2>
+        <h2 id="score">{{ score }}</h2>
+    </div>
+</div>
+</template>
+
 <script>
-import store from '../stores/counter'
 
 export default{
     name: 'scores',
@@ -7,7 +17,8 @@ export default{
         sortedValues:[]
     },
     props:{
-        
+        username: String,
+        score: Number
     },
     methods:[
         function compile(){
@@ -23,8 +34,16 @@ export default{
 }
 </script>
 
-<template>
-<div class="container">
-    
-</div>
-</template>
+<style>
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    width: 80vw;
+}
+.row-card{
+    display: flex;
+    flex-direction: row;
+    font-size: 2rem;
+}
+</style>
