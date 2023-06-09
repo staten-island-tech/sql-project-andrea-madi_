@@ -6,14 +6,18 @@ import { useRouter } from 'vue-router'
 // const props = defineProps(['session'])
 // const { session } = toRefs(props)
 
-const router = useRouter()
-const loading = ref(false)
-const email = ref('')
-const password = ref('')
+// const router = useRouter()
+// const loading = ref(false)
+// const email = ref('')
+// const password = ref('')
 // const full_name = ref('')
 
-const login = async () => {
-  try {
+
+export default{
+  name: 'login',
+  methods: {
+    login: async()=>{
+      try {
     const { error } = await supabase.auth.signInWithPassword({
       email: email.value,
       password: password.value
@@ -26,7 +30,18 @@ const login = async () => {
       alert(error.message)
     }
   }
+    }
+  },
+  data(){
+    return{
+      router: useRouter(),
+      loading: ref(false),
+      email: ref(''),
+      password: ref('')
+    }
+  }
 }
+  
 
 </script>
 
