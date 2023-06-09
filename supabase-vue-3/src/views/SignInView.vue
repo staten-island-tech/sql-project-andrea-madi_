@@ -2,14 +2,11 @@
 import { onMounted, ref } from 'vue'
 import Account from '../components/Account.vue'
 import signUp from '../components/signUp.vue'
-import login from '../components/login.vue'
+// import login from '../components/login.vue'
 import { supabase } from '../supabase'
 
 export default{
   name: 'signInView',
-  components: {
-    Login, Account, signUp
-  }
 }
 // import { useCounterStore } from '../stores/counter';
 
@@ -38,7 +35,7 @@ export default{
     <div class="split left">
       <div class="centered">
         <h2 class="text">Sign in:</h2>
-        <login/>
+        <!-- <login/> -->
       </div>
     </div>
 
