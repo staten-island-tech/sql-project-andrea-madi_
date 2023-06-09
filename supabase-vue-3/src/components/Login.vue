@@ -1,29 +1,61 @@
-<template>
-    <div class="wrapper">
-    <div class="split left">
-      <div class="centered">
-        <h2>Jane Flex</h2>
-        <p>Some text.</p>
-      </div>
-    </div>
-    
-    <div class="split right">
-      <div class="centered">
-        <h2>John Doe</h2>
-        <p>Some text here too.</p>
-      </div>
-    </div>
-    </div>
-</template>
-    
+
 <script>
-export default{
-    name: 'Login',
-    data: {
-        
+import { ref } from 'vue'
+import { supabase } from '../supabase'
+import { useRouter } from 'vue-router'
+// const props = defineProps(['session'])
+// const { session } = toRefs(props)
+
+const router = useRouter()
+const loading = ref(false)
+const email = ref('')
+const password = ref('')
+// const full_name = ref('')
+
+const login = async () => {
+  try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.value,
+      password: password.value
+    })
+    console.log('running?')
+    if (error) throw error
+    router.push({name: 'game'})
+  } catch (error) {
+    if (error instanceof Error) {
+      alert(error.message)
     }
+  }
 }
+
 </script>
+
+<template>
+<form class="row flex-center flex">
+    <div class="col-6 form-widget">
+      <div>
+        <label for="Email">email</label>
+        <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
+      </div>
+      <div>
+        <label for="password">password</label>
+        <input class="inputField" required type="text" placeholder="Your Password" v-model="password" />
+      </div>
+      <div>
+        <button
+          @click="login"
+          type="submit"
+          class="button block"
+          :value="loading ? 'Loading' : 'submit'"
+          :disabled="loading">
+          submit
+        </button>
+          
+        
+      </div>
+    </div>
+  </form>
+</template>
     <!-- 
     - create database with all the users
     - create database with all the users organized by order of the best score
@@ -32,37 +64,11 @@ export default{
     - join tables, delete accounts
     - rearrange login page so returning players can sign in immediately without magic link
     -->
-    
-<style>
+
+<style scoped>
     body {
       font-family: Arial;
       color: white;
-    }
-    
-    .split {
-      height: 100%;
-      width: 50%;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      overflow-x: hidden;
-      padding-top: 20px;
-    }
-    
-    .left {
-      left: 0;
-    }
-    
-    .right {
-      right: 0;
-    }
-    
-    .centered {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
     }
     
 </style>

@@ -9,9 +9,9 @@ const props = defineProps(['session'])
 const { session } = toRefs(props)
 
 const loading = ref(true)
-const username = ref('')
-const high_score = ref(100)
-const avatar_url = ref('')
+const email = ref('')
+const password = ref('')
+const full_name = ref('')
 
 onMounted(() => {
   getProfile()
@@ -25,16 +25,16 @@ async function getProfile() {
 
     let { data, error, status } = await supabase
       .from('profiles')
-      .select(`username, avatar_url, high_score`)
+      .select(`email, password, full_name`)
       .eq('id', user.id)
       .single()
 
     if (error && status !== 406) throw error
 
     if (data) {
-      username.value = data.username
-      high_score.value = data.high_score
-      avatar_url.value = data.avatar_url
+      email.value = data.email
+      password.value = data.password
+      full_name.value = data.full_name
     }
   } catch (error) {
     alert(error.message)
@@ -50,9 +50,9 @@ async function updateProfile() {
 
     const updates = {
       id: user.id,
-      username: username.value,
-      high_score: high_score.value,
-      avatar_url: avatar_url.value,
+      email: email.value,
+      password: password.value,
+      full_name: full_name.value,
       updated_at: new Date(),
     }
 
@@ -78,13 +78,6 @@ async function signOut() {
   }
 }
 
-async function deleteAcc(){
-  try {
-    loading.value = true
-  } catch (error) {
-    
-  }
-}
 </script>
 
 <template>

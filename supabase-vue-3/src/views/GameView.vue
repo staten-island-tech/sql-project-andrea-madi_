@@ -2,16 +2,23 @@
 <template>
   <div class="about">
     <h1>WELCOME {{ counter.name }}</h1>
+    <button @click="startGame()" class="btn">Play!</button>
     <div class="home">
       <card
+        v-if="ready"
         v-for="deck in decks"
         :card="deck"
         :url="deck.url"
         :flipped="deck.flipped"
-        @click="show(deck)"
+        @click="show(deck, count)"
+      />
+      <card
+        v-else
+        v-for="deck in decks"
+        :card="deck"
       />
     </div>
-    <button @click="randomize()" class="btn">sumbit score + replay!</button>
+    <button @click="endGame()" class="btn">sumbit score + replay!</button>
     <h2 class="turns">Turns: {{ turns }}</h2>
   </div>
 </template>
@@ -30,6 +37,7 @@
 </style>
 
 <script>
+import { ref } from 'vue'
 import card from '../components/card.vue'
 import { useCounterStore } from '../stores/counter'
 const counter = useCounterStore()
@@ -49,8 +57,11 @@ export default {
   data() {
     
     return {
+      count: [],
       selected: undefined,
       turns: 0,
+      ready: ref(false),
+      
       decks: [
         {
           type: 'aurora',
@@ -105,13 +116,15 @@ export default {
     }
   },
   methods: {
-    show(deck) {
+    show(deck, count) {
       if (deck.matched) {
+        console.log('done')
         return
       }
       if (!this.selected) {
         this.selected = deck
         deck.flipped = true
+        console.log('flip')
         return
       }
       deck.flipped = true
@@ -119,11 +132,16 @@ export default {
         deck.matched = true
         this.selected.matched = true
         this.selected = undefined
+        console.log('match')
+        count.push(1)
+        console.log(count.length)
         return
       }
-      // if (this.card.type == this.correct) {
-      //   return
-      // }
+
+      if(count.length == 6){
+        console.log('game is over')
+      }
+      
       setTimeout(() => {
         deck.flipped = false
         this.selected.flipped = false
@@ -132,17 +150,24 @@ export default {
       this.turns++
       // alert(this.turns)
     },
-    randomize() {
-      counter.userData.push(this.turns)
+    startGame(){
+      this.randomize();
+      this.ready = true
+    },
+    endGame() {
+      counter.userScore.push(this.turns)
       this.turns = 0
-      console.log('data.store count', counter.userData)
+      console.log('data.store count', counter.userScore)
+      this.randomize();
+      updateProfile(this.turns)
+    },
+    randomize(){
       this.decks.sort(() => Math.random() - 0.5)
       for (let i = 0; i < this.decks.length; i++) {
         this.decks[i].flipped = false
         this.decks[i].matched = false
       }
-      updateProfile(this.turns)
-    },
+    },    
     async updateProfile(highscore) {
   try {
     loading.value = true
@@ -165,5 +190,6 @@ export default {
 }
   }
 }
+
 </script>
 

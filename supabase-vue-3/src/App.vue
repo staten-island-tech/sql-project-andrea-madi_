@@ -1,6 +1,20 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { useCounterStore } from './stores/counter';
+import { supabase } from './supabase';
+import {ref} from 'vue'
+const counter = useCounterStore()
+const appReady = ref(null)
+const user = supabase.auth.getUser()
 
+if(!user){
+  appReady.value = true
+}
+
+supabase.auth.onAuthStateChange((_, session)=>{
+  // counter.setUser(session);
+  appReady.value = true;
+})
 </script>
 
 <template>
@@ -9,7 +23,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <RouterLink to="/game" > game </RouterLink>
         <RouterLink to="/leaderboard" > leaderboard </RouterLink>
-        <RouterLink to="/" > sign in</RouterLink>
+        <RouterLink to="/" > sign in </RouterLink>
       </nav>
     </div>
   </header>
