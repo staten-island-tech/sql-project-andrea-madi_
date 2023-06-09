@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import Account from '../components/Account.vue'
 import signUp from '../components/signUp.vue'
-import Login from '../components/login.vue'
+import login from '../components/login.vue'
 import { supabase } from '../supabase'
 
 export default{
@@ -38,7 +38,7 @@ export default{
     <div class="split left">
       <div class="centered">
         <h2 class="text">Sign in:</h2>
-        <Login/>
+        <login/>
       </div>
     </div>
 
