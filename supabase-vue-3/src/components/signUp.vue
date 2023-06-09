@@ -63,7 +63,7 @@ const handleSignUp = async () => {
       </div>
       <div>
         <button 
-        @click="handleSignUp"
+        @click="handleSignUp()"
           type="submit"
           class="button block"
           :disabled="loading">

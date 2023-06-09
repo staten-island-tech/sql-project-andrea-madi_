@@ -3,6 +3,7 @@
   <div class="about">
     <h1>WELCOME {{ counter.name }}</h1>
     <button @click="startGame()" class="btn">Play!</button>
+    <h2>Click Play! to start</h2>
     <div class="home">
       <card
         v-if="ready"

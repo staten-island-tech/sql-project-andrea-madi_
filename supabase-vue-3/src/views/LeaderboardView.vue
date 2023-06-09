@@ -32,6 +32,7 @@ export default{
                 alert(error.message)
             }
         },
+
     },
     components:{
         scores
