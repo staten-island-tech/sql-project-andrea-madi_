@@ -57,10 +57,10 @@ export default {
   data() {
     
     return {
-      count: [],
       selected: undefined,
       turns: 0,
       ready: ref(false),
+      count:1,
       
       decks: [
         {
@@ -117,6 +117,7 @@ export default {
   },
   methods: {
     show(deck, count) {
+      
       if (deck.matched) {
         console.log('done')
         return
@@ -133,15 +134,16 @@ export default {
         this.selected.matched = true
         this.selected = undefined
         console.log('match')
-        count.push(1)
-        console.log(count.length)
-        return
-      }
-
-      if(count.length == 6){
+        this.count++;
+        console.log(count)
+        if(count == 6){
         console.log('game is over')
-      }
-      
+        alert('Congrats! You win! Click the Refresh Button to play again and beat your best score!')
+      } 
+        return{
+
+        }}
+           
       setTimeout(() => {
         deck.flipped = false
         this.selected.flipped = false
