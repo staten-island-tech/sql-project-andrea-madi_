@@ -6,7 +6,7 @@
     </div>
          <!-- log in -->
          <form class="form" @submit.prevent="login">
-            <h1 class="text">LOGIN</h1>
+            <h1 class="heading">LOGIN</h1>
             <div>
                 <label for="email" class="email">EMAIL</label>
                 <input type="email" required class="text" v-model="email"/>
@@ -86,5 +86,8 @@ label{
 }
 form{
     margin-top: 20vh;
+}
+.heading{
+    text-decoration: underline;
 }
 </style>
