@@ -140,11 +140,14 @@ export default {
         if(count == 6){
         console.log('game is over')
         alert('Congrats! You win! Click the Refresh Button to play again and beat your best score!')
-      } 
+      }
         return{
 
-        }}
-           
+        }
+      }
+
+      
+
       setTimeout(() => {
         deck.flipped = false
         this.selected.flipped = false

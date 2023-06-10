@@ -27,7 +27,7 @@ const handleSignUp = async () => {
     }
   }
   try {
-    const { error } = await supabase.from('profiles').insert([
+    const { error } = await supabase.from('profiles').upsert([
       {
         email: email.value,
         full_name: full_name.value
@@ -63,7 +63,7 @@ const handleSignUp = async () => {
       </div>
       <div>
         <button 
-        @click="handleSignUp()"
+        @click="handleSignUp"
           type="submit"
           class="button block"
           :disabled="loading">

@@ -6,11 +6,11 @@ import { useRouter } from 'vue-router'
 // const props = defineProps(['session'])
 // const { session } = toRefs(props)
 
-// const router = useRouter()
-// const loading = ref(false)
-// const email = ref('')
-// const password = ref('')
-// const full_name = ref('')
+const router = useRouter()
+const loading = ref(false)
+const email = ref('')
+const password = ref('')
+const full_name = ref('')
 
 
 export default{
@@ -37,7 +37,8 @@ export default{
       router: useRouter(),
       loading: ref(false),
       email: ref(''),
-      password: ref('')
+      password: ref(''),
+      full_name: ref('')
     }
   }
 }
@@ -46,7 +47,7 @@ export default{
 </script>
 
 <template>
-<form class="row flex-center flex">
+<form class="row flex-center flex" @submit.prevent="login">
     <div class="col-6 form-widget">
       <div>
         <label for="Email">email</label>
@@ -58,7 +59,6 @@ export default{
       </div>
       <div>
         <button
-          @click="login"
           type="submit"
           class="button block"
           :value="loading ? 'Loading' : 'submit'"

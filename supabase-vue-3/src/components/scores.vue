@@ -14,23 +14,12 @@
 export default{
     name: 'scores',
     data: {
-        sortedValues:[]
     },
     props:{
         username: String,
         score: Number
     },
-    methods:[
-        function compile(){
-            store.allData.push(store.userData)
-        },
-        function findMin(array){
-            const userBest = Math.min(array)
-            store.allBest.push(userBest)
-            sortedValues = store.allBest.toSorted((a, b) => a - b);
-            console.log(sortedValues)
-        }
-    ]
+    methods:[]
 }
 </script>
 
