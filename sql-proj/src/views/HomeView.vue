@@ -69,7 +69,7 @@ export default {
 <template>
   <nav>
     <div class="home">
-      <card v-for="deck in decks" :key="deck" :url="deck.url" />
+      <!-- <card v-for="deck in decks" :key="deck" :url="deck.url" /> -->
     </div>
   </nav>
 </template>
