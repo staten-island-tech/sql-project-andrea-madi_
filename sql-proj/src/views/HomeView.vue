@@ -1,48 +1,50 @@
 <script>
 import card from '../components/card.vue'
 import counter from '../stores/counter';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { supabase } from '../supabase';
-// export default {
-//   setup(){
-//     const username = ref('')
+export default {
+  setup(){
+    const username = ref('')
 
-//     const user = computed(()=> counter.state.user)
+    const User = computed(()=> counter.state.user)
 
-//     const fetchData = async () => {
-//       try {
-//         const { data, error } = await supabase
-//       .from('profiles')
-//       .select('username')
-//       .eq('id', user.id)
-//       .single()
-//       if (error) throw error
-//       if(data){
-//         username.value = data.username
-//       }
+    const getUser = async () => {
+      try {
+      const { data, error } = await supabase
+      .from('profiles')
+      .select('full_name')
+      .eq('id', User.id)
+      .single()
+      if (error) throw error
+      console.log(User)
+      if(data){
+        username.value = data.full_name
+      }
 
-//       console.log(data)
-//       } catch (error) {
-//         console.log(error)
-//       }
-//     }
+      console.log(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
     
+    getUser();
     
-//     return {
-//     user,
-//     fetchData,
-//     username
-//   }
-//   }
+    return {
+    User,
+    getUser,
+    username
+  }
+  }
   
-// }
+}
 </script>
 
 <template>
   <nav>
     <div class="home">
-      <!-- <h1 v-if="!user">welcome user!</h1>
-      <h1 v-if="user">welcome {{ username }}</h1> -->
+      <h1 v-if="!User">welcome user!</h1>
+      <h1 v-if="User">welcome {{ username }}</h1>
     </div>
   </nav>
 </template>
