@@ -1,95 +1,72 @@
 <template>
-  <div class="flip-card" v-on:click="handleClick(flip-card)">
-    <div class="flip-card-inner">
-    <div class="flip-card-front">
-        <img class='logo' src="https://hipfonts.com/wp-content/uploads/2022/08/Walt_Disney_logo_cover.png" alt="disney theme logo">
-    </div>
-    <div class="flip-card-back">
-      <img class='cards' :src="url" alt="character img" />
-    </div>
-    </div>
+  <div class="card">
+    <img :src="url" alt="" class="card-back" />
+    <img
+      :src="'https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/1200x800/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/16025342/acastro_190411_1777_Disney_Streaming_0003.0.jpg'"
+      alt=""
+      :class="{ 'card-front': true, 'is-flipped': flipped }"
+    />
   </div>
 </template>
 
 <script>
+// @click="show"
 export default {
   name: 'card',
   props: {
     url: String,
-    deck: Object
+    card: Object,
+    flipped: Boolean
   },
-  methods:{
-    handleClick(el) {
-      el.classList.toggle('flip-card-active');
-    }
-  }
+  methods: {}
 }
-
 </script>
 
 <style>
-.logo {
-  width: 40%;
+.is-flipped {
+  transform: translateX(-100%) rotateY(-180deg);
+  display: none;
 }
-
-.cards{
-  width: 20%;
-  background-color: black;
-}
-
-.flip-card {
+.card {
+  width: 150px;
+  height: 150px;
+  background-color: rgb(228, 167, 228);
+  margin: 10px auto;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  perspective: 1000px;
-  margin: .5rem;
-  height: 25vh;
-  width: 28vw;
-
-}
-
-.flip-card-inner {
   position: relative;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  text-align: center;
-  transition: transform 0.6s;
   transform-style: preserve-3d;
+  transform-origin: center right;
+  transition: transform 1s;
 }
-
-.flip-card-active .flip-card-inner {
-  transform: rotateY(-180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
-
-.flip-card-front {
-  background-color: black;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.flip-card-back {
-  background-color: black;
-  color: #fff;
-  justify-items: center;
+.card-back {
   transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
+.card-front {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+img {
+  width: 50%;
+  height: 100px;
+}
+.card img {
+  background-color: rgb(228, 167, 228);
+}
+.flip-container {
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+  min-height: 120px;
+  cursor: pointer;
+}
+
+.turns {
+  color: cornflowerblue;
+}
+
 </style>

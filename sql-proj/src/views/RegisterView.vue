@@ -111,7 +111,12 @@ form{
     text-decoration: underline;
 }
 .text{
-    color: aliceblue;
+    color: #2d1b4b;
+    font-size: 2.5vh;
+    background-color: aliceblue;
+    border: none;
+    border-radius: 10px;
+    height: 1.75rem;
+    width: 10rem;
 }
-
  </style>
