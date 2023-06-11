@@ -90,4 +90,7 @@ form{
 .heading{
     text-decoration: underline;
 }
+.text{
+    color: aliceblue;
+}
 </style>

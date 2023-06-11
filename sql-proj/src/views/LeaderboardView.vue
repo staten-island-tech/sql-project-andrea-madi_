@@ -1,14 +1,22 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+<script>
+import { Rankings } from '../components/Rankings.vue'
+export default{
+  setup(){
+  }
+}
 </script>
 
 <template>
-  <main>
-  </main>
+<div class="container">
+  <h1>THIS IS THE LEADERBOARD PAGE</h1>
+  <Rankings
+  v-for="player in data"
+  :key="player.id"
+
+  />
+</div>
 </template>
 
 <style scoped>
-body{
-  background-color: green;
-}
+
 </style>

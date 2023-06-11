@@ -3,7 +3,7 @@
   <header>
     <nav>
       <div class="container">
-        <p class="text-lg">CARD MATCHING GAME</p>
+        <p class="heading">CARD MATCHING GAME</p>
       </div>
       <ul class="list">
         <router-link class="cursor-point" :to="{name: 'home'}">HOME</router-link>
@@ -54,7 +54,7 @@ export default{
   color: aliceblue;
   text-decoration: none;
   font-size: 2rem;
-  list-style-type: none
+  list-style-type: none;
 } 
 .cursor-point:hover{
   background-color: rgba(153, 0, 255, 0.356);
@@ -64,8 +64,10 @@ nav{
   display: flex;
   flex-direction: row;
   font-size: 5vh;
+  width: 100vw;
 }
 p{
   text-decoration: underline;
+  background-color: transparent;
 }
 </style>

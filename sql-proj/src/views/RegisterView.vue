@@ -12,6 +12,10 @@
                 <input type="email" required class="text" v-model="email"/>
             </div>
             <div>
+                <label for="username" class="username">USERNAME</label>
+                <input type="username" required class="text" v-model="full_name"/>
+            </div>
+            <div>
                 <label for="password" class="password">PASSWORD</label>
                 <input type="password" required class="text" v-model="password"/>
             </div>
@@ -29,9 +33,10 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref  } from 'vue';
 import { supabase } from '../supabase'
 import { useRouter } from 'vue-router';
+import counter from '../stores/counter';
 export default{
     name: 'register',
     setup(){
@@ -39,6 +44,7 @@ export default{
         const router = useRouter()
         const email = ref(null)
         const password = ref(null)
+        const full_name = ref(null)
         const confirmPassword = ref(null)
         const errorMsg = ref(null)
 
@@ -48,7 +54,12 @@ export default{
                 try {
                 const {error} = await supabase.auth.signUp({
                     email: email.value,
-                    password: password.value
+                    password: password.value,
+                    options:{
+                        data:{
+                            full_name: full_name.value
+                        }
+                    }
                 })
                 if (error) throw error
                 router.push({name: 'login'})
@@ -65,9 +76,8 @@ export default{
             errorMsg.value = null
         }, 5000)
         }
-            
 
-        return{email, password, confirmPassword, errorMsg, register}
+        return{email, password, confirmPassword, full_name, errorMsg, register}
     }
 }
 
@@ -100,4 +110,8 @@ form{
 .heading{
     text-decoration: underline;
 }
+.text{
+    color: aliceblue;
+}
+
  </style>
