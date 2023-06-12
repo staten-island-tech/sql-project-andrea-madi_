@@ -18,7 +18,7 @@
         :card="deck"
       />
     </div>
-    <button v-if='done' @click="endGame()">REPLAY!</button>
+    <button v-if='done' @click="endGame()">FiNISH!</button>
     <h2 class="turns">Turns: {{ turns }}</h2>
   </div>
 </template>
@@ -41,6 +41,7 @@ button{
     border: none;
     background-color: aliceblue;
 }
+  
 </style>
 
 <script>
