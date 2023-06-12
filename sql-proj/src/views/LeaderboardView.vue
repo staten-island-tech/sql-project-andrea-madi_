@@ -1,5 +1,6 @@
 <script>
 import Rankings from '../components/Rankings.vue'
+import {supabase} from '../supabase.js'
 import { ref } from 'vue'
 export default{
   components:{
@@ -13,20 +14,23 @@ export default{
 
     const getData = async () => {
           try {
-              const {data: profiles, error} = await supabase
+              let {data, error} = await supabase
               .from('profiles')
-              .select('*')
-          if(error) throw error
-          data.value = profiles
-          data.value = users
-          console.log(data.value)
-          dataLoaded.value = true
+              .select()
+              if(error) throw error
+              console.log(data)
+              users.value = data
+              console.log(users.value)
+              dataLoaded.value = true
+              
           } catch (error) {
+              console.log('hey')
               errorMsg.value = error.message
               setTimeout(()=>{
                   errorMsg.value = false
               }, 5000)
           }
+          
           
       }
       getData()
@@ -42,18 +46,38 @@ export default{
 
 <template>
 <div class="container">
-  <h1>THIS IS THE LEADERBOARD PAGE</h1>
+  <h1>{{ errorMsg }}</h1>
+  <div class="headings">
+  <h1 class="head" >username:</h1>
+  <h1 class="head">high score:</h1>
+  <h1 class="head">ranking:</h1>
+  </div>
   <Rankings
   v-for="player in users"
   :key="player.id"
   :username="player.full_name"
+  :high_score="player.high_score"
+  :avatar_url="player.avatar_url"
   class="user"
   />
 </div>
 </template>
 
 <style scoped>
+.container{
+  margin-top: 10vh;
+}
 .user{
-  background-color: aquamarine;
+  background-color: #6969b35d;
+}
+.headings{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #6969b35d;
+  width: 100vw;
+}
+.head{
+  background-color: transparent;
 }
 </style>
