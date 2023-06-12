@@ -12,7 +12,7 @@ export default {
     <img :src="avatar_url" alt="">
     <h1>{{ username }}</h1>
     <h1>{{high_score}}</h1>
-    <h1>my ranking</h1>
+    <h1>...</h1>
 </div>
 </template>
 

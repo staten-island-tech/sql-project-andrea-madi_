@@ -48,6 +48,7 @@ button{
 import { ref } from 'vue'
 import card from '../components/card.vue'
 import counter from '../stores/counter'
+import { supabase } from '../supabase'
 
 // const props = defineProps(['session'])
 // const { session } = toRefs(props)
@@ -169,14 +170,56 @@ export default {
       this.ready = true
     },
     endGame() {
-      counter.state.userScore.push(this.turns)
+      this.getData(this.turns)
       this.turns = 0
       this.ready = false
       this.done = false
-      console.log('data.store count', counter.state.userScore)
       this.randomize();
-      updateProfile(this.turns)
+      
     },
+    async getData (highscore) {
+      try {
+        const currentUser = ref(null)
+        const dataLoaded = ref(null)
+        const currentID = counter.state.user.id
+        const {data, error} = await supabase
+        .from('profiles')
+            .select()
+            .eq('id', currentID)
+            .single()
+            if(error) throw error
+            console.log(data)
+            currentUser.value = data
+            dataLoaded.value = true
+            console.log(currentUser.value.high_score)
+            if(currentUser.value.high_score > highscore){
+              this.updateProfile(highscore)
+              console.log('you beat your best score!')
+            }else{
+              console.log(currentUser.high_score.value)
+            }
+          } catch (error) {
+            console.log(error)
+         }
+     },
+    async updateProfile(highscore) {
+      console.log('run')
+      try {
+        const currentID = counter.state.user.id
+
+        const updates = {
+          id: currentID,
+          high_score: highscore,
+          updated_at: new Date(),
+        }
+
+        let { error } = await supabase.from('profiles').upsert(updates)
+
+        if (error) throw error
+      } catch (error) {
+        alert(error.message)
+      }
+},
     randomize(){
       this.decks.sort(() => Math.random() - 0.5)
       for (let i = 0; i < this.decks.length; i++) {
@@ -184,26 +227,7 @@ export default {
         this.decks[i].matched = false
       }
     },    
-    async updateProfile(highscore) {
-  try {
-    loading.value = true
-    const { user } = session.value
 
-    const updates = {
-      id: user.id,
-      high_score: highscore,
-      updated_at: new Date(),
-    }
-
-    let { error } = await supabase.from('profiles').upsert(updates)
-
-    if (error) throw error
-  } catch (error) {
-    alert(error.message)
-  } finally {
-    loading.value = false
-  }
-}
   }
 }
 

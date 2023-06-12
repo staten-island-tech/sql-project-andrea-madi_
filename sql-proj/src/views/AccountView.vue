@@ -57,7 +57,7 @@ export default{
         // get current id of user
         const currentID = counter.state.user.id
 
-        // get workout data
+        // get data
         const getData = async () => {
             try {
                 const {data, error} = await supabase
