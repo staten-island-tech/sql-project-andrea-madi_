@@ -30,9 +30,15 @@ export default{
                   errorMsg.value = false
               }, 5000)
           }
-          
-          
       }
+
+      const reorder = (users) => {
+        users.forEach((el)=>{
+          let i = users.indexOf(el)
+          console.log(i)
+        })
+      }
+
       getData()
 
       return{

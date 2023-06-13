@@ -10,7 +10,8 @@
 import { reactive, ref } from 'vue'
 const state = reactive({
   user: null,
-  userScore: ref([])
+  userScore: ref([]),
+  allUsers: ref([])
 })
 const methods = {
   setUser(payload){

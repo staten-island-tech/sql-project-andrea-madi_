@@ -154,9 +154,6 @@ export default {
 
         }
       }
-
-      
-
       setTimeout(() => {
         deck.flipped = false
         this.selected.flipped = false
@@ -226,7 +223,7 @@ export default {
         this.decks[i].flipped = false
         this.decks[i].matched = false
       }
-    },    
+    }
 
   }
 }
